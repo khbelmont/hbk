@@ -39,7 +39,7 @@ docker {
 
 task buildDocker(type: Docker) {
 	baseImage = 'develar/java:latest'
-	applicationname = 'gepshop'
+	applicationName = 'gepshop'
 	tagVersion = '0.1'
 	push = project.hasProperty('push')
 	tag = 'geowarin/sout-chuck-norris'
