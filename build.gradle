@@ -38,11 +38,13 @@ docker {
 }
 
 task buildDocker(type: Docker) {
-	baseImage = 'develar/java:latest'
+	//baseImage = 'develar/java:latest'
+	baseImage = 'geowarin/sout-chuck-norris:0.1'
 	applicationName = 'gepshop'
 	tagVersion = '0.1'
 	push = project.hasProperty('push')
-	tag = 'geowarin/sout-chuck-norris'
+	//tag = 'geowarin/sout-chuck-norris'
+	tag = 'ppb/gepshop'
 	addFile {
 		from jar
 		rename {'app.jar'}
