@@ -32,7 +32,7 @@ jar {
 // docker build process
 group = 'ppb'
 
-Docker {
+docker {
 	baseImage = 'develar/java:latest'
 	maintainer = 'hbk'
 }
