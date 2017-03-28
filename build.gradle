@@ -14,12 +14,45 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
-apply plugin: 'war'
+apply plugin: 'docker'
+
+/*apply plugin: 'war'
 
 war {
 	baseName = 'testj'
 	version = '0.0.1-SNAPSHOT'
+}*/
+
+apply plugin: 'jar'
+
+jar {
+	baseName = 'testj'
+	version = '0.0.1-SNAPSHOT'
 }
+
+// docker build process
+group = 'ppb'
+
+Docker {
+	baseImage = 'develar/java:latest'
+	maintainer = 'hbk'
+}
+
+task buildDocker(type: Docker) {
+	baseImage = 'develar/java:latest'
+	applicationname = 'gepshop'
+	tagVersion = '0.1'
+	push = project.hasProperty('push')
+	tag = 'geowarin/sout-chuck-norris'
+	addFile {
+		from jar
+		rename {'app.jar'}
+	}
+	entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+	exposePort(8080)
+}
+
+buildDocker.dependsOn(build)
 
 sourceCompatibility = 1.8
 
